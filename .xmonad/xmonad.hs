@@ -246,7 +246,9 @@ myLogHook = return ()
 -- per-workspace layout choices.
 --
 -- By default, do nothing.
-myStartupHook = return ()
+myStartupHook = do
+		-- remap caps lock
+		spawn "setxkbmap -option caps:escape"
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
