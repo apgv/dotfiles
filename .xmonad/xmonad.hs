@@ -249,6 +249,8 @@ myLogHook = return ()
 myStartupHook = do
 		-- remap caps lock
 		spawn "setxkbmap -option caps:escape"
+		-- turn on blue light filter
+		spawn "redshift -P -O 3500"
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
