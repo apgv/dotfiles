@@ -245,6 +245,10 @@ myLogHook = return ()
 -- with mod-q.  Used by, e.g., XMonad.Layout.PerWorkspace to initialize
 -- per-workspace layout choices.
 --
+-- https://wiki.archlinux.org/index.php/Libinput
+-- find device id 'xinput list'
+-- find device props 'xinput list-props <device_id>'
+--
 -- By default, do nothing.
 myStartupHook = do
 		-- remap caps lock
@@ -253,6 +257,10 @@ myStartupHook = do
 		spawn "redshift -P -O 3500"
 		-- set screen resolution
 		spawn "xrandr --output eDP-1 --mode 3840x2160 --scale 0.5x0.5"
+		-- touchpad enable tap to click
+		spawn "xinput set-prop 13 305 1"
+		-- touchpad natural scrolling
+		spawn "xinput set-prop 13 313 1"
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
