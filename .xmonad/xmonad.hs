@@ -261,6 +261,8 @@ myStartupHook = do
 		spawn "xinput set-prop 13 305 1"
 		-- touchpad natural scrolling
 		spawn "xinput set-prop 13 313 1"
+		-- auto screen lock
+		spawn "xautolock -time 5 -locker slock"
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
