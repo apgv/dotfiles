@@ -8,7 +8,11 @@
 --
 
 import XMonad
+import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.ManageDocks
+import XMonad.Util.Run(spawnPipe)
 import Data.Monoid
+import System.IO
 import System.Exit
 
 import qualified XMonad.StackSet as W
@@ -184,7 +188,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayout = tiled ||| Mirror tiled ||| Full
+myLayout = avoidStruts (tiled ||| Mirror tiled ||| Full)
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
@@ -231,14 +235,6 @@ myManageHook = composeAll
 myEventHook = mempty
 
 ------------------------------------------------------------------------
--- Status bars and logging
-
--- Perform an arbitrary action on each internal state change or X event.
--- See the 'XMonad.Hooks.DynamicLog' extension for examples.
---
-myLogHook = return ()
-
-------------------------------------------------------------------------
 -- Startup hook
 
 -- Perform an arbitrary action each time xmonad starts or is restarted
@@ -269,36 +265,35 @@ myStartupHook = do
 
 -- Run xmonad with the settings you specify. No need to modify this.
 --
-main = xmonad defaults
+main = do
+    xmproc <- spawnPipe "xmobar"
+    xmonad $ docks defaultConfig
+        {
+            -- simple stuff
+            terminal           = myTerminal,
+            focusFollowsMouse  = myFocusFollowsMouse,
+            clickJustFocuses   = myClickJustFocuses,
+            borderWidth        = myBorderWidth,
+            modMask            = myModMask,
+            workspaces         = myWorkspaces,
+            normalBorderColor  = myNormalBorderColor,
+            focusedBorderColor = myFocusedBorderColor,
 
--- A structure containing your configuration settings, overriding
--- fields in the default config. Any you don't override, will
--- use the defaults defined in xmonad/XMonad/Config.hs
---
--- No need to modify this.
---
-defaults = def {
-      -- simple stuff
-        terminal           = myTerminal,
-        focusFollowsMouse  = myFocusFollowsMouse,
-        clickJustFocuses   = myClickJustFocuses,
-        borderWidth        = myBorderWidth,
-        modMask            = myModMask,
-        workspaces         = myWorkspaces,
-        normalBorderColor  = myNormalBorderColor,
-        focusedBorderColor = myFocusedBorderColor,
+            -- key bindings
+            keys               = myKeys,
+            mouseBindings      = myMouseBindings,
 
-      -- key bindings
-        keys               = myKeys,
-        mouseBindings      = myMouseBindings,
-
-      -- hooks, layouts
-        layoutHook         = myLayout,
-        manageHook         = myManageHook,
-        handleEventHook    = myEventHook,
-        logHook            = myLogHook,
-        startupHook        = myStartupHook
-    }
+            -- hooks, layouts
+            layoutHook         = myLayout,
+            manageHook         = myManageHook <+> manageHook defaultConfig,
+            handleEventHook    = myEventHook,
+            logHook            = dynamicLogWithPP xmobarPP
+                                     {
+                                         ppOutput = hPutStrLn xmproc,
+                                         ppTitle = xmobarColor "green" "" . shorten 50
+                                     },
+            startupHook        = myStartupHook
+        }
 
 -- | Finally, a copy of the default bindings in simple textual tabular format.
 help :: String
