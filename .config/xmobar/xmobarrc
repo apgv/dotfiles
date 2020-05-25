@@ -5,7 +5,7 @@ Config { font = "-*-Fixed-Bold-R-Normal-*-13-*-*-*-*-*-*-*"
        , bgColor = "black"
        , fgColor = "grey"
        , alpha = 255
-       , position = Top
+       , position = TopW L 95
        , textOffset = -1
        , iconOffset = -1
        , lowerOnStart = True
@@ -35,5 +35,5 @@ Config { font = "-*-Fixed-Bold-R-Normal-*-13-*-*-*-*-*-*-*"
        , sepChar = "%"
        , alignSep = "}{"
        , template = "%StdinReader% }{ %cpu% | %memory% * %swap% | %eth0% - %eth1% |\
-                    \ <fc=#ee9a00>%date%</fc> | %EGPF% | %uname%"
+                    \ <fc=#ee9a00>%date%</fc> | %EGPF% | %uname% |"
        }
