@@ -11,7 +11,6 @@ import XMonad
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Util.Run(spawnPipe)
-import XMonad.Util.SpawnOnce
 import Data.Monoid
 import System.IO
 import System.Exit
@@ -260,8 +259,6 @@ myStartupHook = do
 		spawn "xinput set-prop 13 313 1"
 		-- auto screen lock
 		spawn "xautolock -time 5 -locker slock"
-                -- start system tray
-                spawnOnce "stalonetray --config ~/.config/stalonetray/stalonetrayrc"
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
