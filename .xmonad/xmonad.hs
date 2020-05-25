@@ -72,6 +72,15 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- launch dmenu
     , ((modm,               xK_s     ), spawn "dmenu_run")
 
+    -- launch Firefox
+    , ((modm .|. controlMask, xK_f     ), spawn "firefox")
+
+    -- launch nautilus
+    , ((modm .|. controlMask, xK_o     ), spawn "nautilus")
+
+    -- launch Slack
+    , ((modm .|. controlMask, xK_s     ), spawn "slack")
+
     -- launch gmrun
     , ((modm .|. shiftMask, xK_p     ), spawn "gmrun")
 
@@ -219,6 +228,8 @@ myLayout = avoidStruts (tiled ||| Mirror tiled ||| Full)
 --
 myManageHook = composeAll
     [ className =? "MPlayer"        --> doFloat
+    , className =? "Firefox"        --> doShift (myWorkspaces !! 2)
+    , className =? "Slack"          --> doShift (myWorkspaces !! 0)
     , className =? "Gimp"           --> doFloat
     , resource  =? "desktop_window" --> doIgnore
     , resource  =? "kdesktop"       --> doIgnore ]
