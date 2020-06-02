@@ -57,6 +57,8 @@ keys = [
     Key([mod, "control"], "r", lazy.restart()),
     Key([mod, "control"], "q", lazy.shutdown()),
     Key([mod], "r", lazy.spawncmd()),
+    Key([mod, "control"], "l", lazy.spawn("slock")),
+    Key([mod], "s", lazy.spawn("dmenu_run -p 'Run: '")),
 
     # XMonad key bindings
     Key([mod], "h", lazy.layout.left()),
