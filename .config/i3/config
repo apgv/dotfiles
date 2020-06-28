@@ -175,3 +175,8 @@ exec --no-startup-id "pidof xfsettingsd || xfsettingsd"
 exec --no-startup-id "gnome-keyring-daemon --start --components=pkcs11"
 exec --no-startup-id "gnome-keyring-daemon --start --components=secrets"
 exec --no-startup-id "pidof nm-applet || nm-applet --sm-disable"
+
+# personal modifications
+
+# set keyboard layout to Colemak and remap caps lock
+exec_always setxkbmap us -variant colemak -option caps:escape
