@@ -214,3 +214,12 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
+# program launchers
+bindsym $mod+ctrl+c exec --no-startup-id pidgin
+bindsym $mod+ctrl+e exec --no-startup-id gedit
+bindsym $mod+ctrl+f exec --no-startup-id firefox
+bindsym $mod+ctrl+g exec --no-startup-id google-chrome
+bindsym $mod+ctrl+i exec --no-startup-id idea
+bindsym $mod+ctrl+o exec --no-startup-id nautilus
+bindsym $mod+ctrl+s exec --no-startup-id slack
+
