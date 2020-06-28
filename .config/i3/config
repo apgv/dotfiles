@@ -221,6 +221,9 @@ bindsym $mod+"F8" exec --no-startup-id xrandr --output eDP-1 --auto --output DP-
 # lock screen and suspend the computer
 bindsym $mod+ctrl+"F12" exec --no-startup-id i3lock -f -c 333333, exec systemctl suspend
 
+# change to Norwegian keyboard layout
+bindsym $mod+"F11" exec --no-startup-id setxkbmap no -option caps:escape
+
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
