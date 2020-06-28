@@ -166,6 +166,7 @@ bindsym $mod+p mode "resize"
 # finds out, if available)
 bar {
         status_command i3status
+	tray_output eDP-1
 }
 
 # move focused workspace to output
