@@ -160,8 +160,8 @@ bindsym $mod+Ctrl+Left move workspace to output left
 bindsym $mod+Ctrl+Right move workspace to output right
 
 # lock screen
-bindsym $mod+q exec i3lock
-exec --no-startup-id "xautolock -detectsleep -time 5 -locker 'i3lock -f -c 002776' -notify 30 -notifier \"notify-send -t 2000 'Locking screen in 30 seconds'\""
+bindsym $mod+q exec i3lock -c 333333
+exec --no-startup-id "xautolock -detectsleep -time 5 -locker 'i3lock -f -c 333333' -notify 30 -notifier \"notify-send -t 2000 'Locking screen in 30 seconds'\""
 
 # Run SB1A inituser and initsystem
 exec --no-startup-id "/usr/local/bin/sb1a-inituser.sh"
