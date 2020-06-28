@@ -184,3 +184,13 @@ exec_always setxkbmap us -variant colemak -option caps:escape
 # turn on blue light filter
 exec_always --no-startup-id redshift -O 3500
 
+# https://wiki.archlinux.org/index.php/Libinput
+# find device id 'xinput list'
+# find device props 'xinput list-props <device_id>'
+
+# touchpad
+## enable tap to click
+exec_always --no-startup-id xinput set-prop 12 325 {0,0,0,0,1,0,0}
+## natural scrolling
+exec_always --no-startup-id synclient VertScrollDelta=-114 HorizScrollDelta=-114
+
