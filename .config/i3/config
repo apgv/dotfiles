@@ -180,3 +180,7 @@ exec --no-startup-id "pidof nm-applet || nm-applet --sm-disable"
 
 # set keyboard layout to Colemak and remap caps lock
 exec_always setxkbmap us -variant colemak -option caps:escape
+
+# turn on blue light filter
+exec_always --no-startup-id redshift -O 3500
+
