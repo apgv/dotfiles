@@ -190,3 +190,13 @@ exec_always redshift -P -O 3000
 
 # set screen resolution
 exec_always xrandr --output eDP-1 --mode 2048x1152
+
+# https://wiki.archlinux.org/index.php/Libinput
+# find device id 'xinput list'
+# find device props 'xinput list-props <device_id>'
+
+# touchpad
+## enable tap to click
+exec_always --no-startup-id xinput set-prop 13 307 1 
+## natural scrolling
+exec_always --no-startup-id xinput set-prop 13 315 1 
