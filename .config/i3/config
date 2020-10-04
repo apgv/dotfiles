@@ -205,4 +205,4 @@ exec_always --no-startup-id xinput set-prop 13 307 1
 exec_always --no-startup-id xinput set-prop 13 315 1 
 
 # program launchers
-bindsym $mod+ctrl+l exec --no-startup-id i3lock -c 333333
+bindsym $mod+l exec --no-startup-id i3lock -c 333333
